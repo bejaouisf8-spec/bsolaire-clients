@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BSolaire — Votre énergie solaire, simplement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffaf0;--bg2:#fff;--ink:#14213d;--muted:#5d6b88;--line:#eadfc8;--sun:#ffb400;--sun2:#ff7a18;--green:#12b886;--blue:#3b82f6;--red:#ef4444;--card:#ffffff;--soft:#fff3d6;--shadow:0 20px 50px -20px rgba(180,110,0,.25);--r:22px}
+[data-theme=dark]{--bg:#0a1020;--bg2:#101936;--ink:#eef2fb;--muted:#9aa8c7;--line:#223055;--card:#121c3a;--soft:#1a2547;--shadow:0 20px 50px -20px rgba(0,0,0,.7)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+[dir=rtl] body,[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3,[dir=rtl] button{font-family:'Cairo',sans-serif}
+h1,h2,h3,.sora{font-family:'Sora',sans-serif;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;border:0;font:600 15px 'Inter',sans-serif;cursor:pointer;transition:.2s}
+.btn.p{background:linear-gradient(135deg,var(--sun),var(--sun2));color:#2a1700;box-shadow:0 10px 25px -8px rgba(255,122,24,.6)}
+.btn.p:hover{transform:translateY(-2px)}
+.btn.o{background:transparent;border:1.5px solid var(--line);color:var(--ink)}.btn.o:hover{border-color:var(--sun)}
+.chip{display:inline-block;background:var(--soft);color:var(--sun2);font-weight:600;font-size:13px;padding:6px 14px;border-radius:99px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:22px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;font:800 21px 'Sora'}
+.brand i{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--sun),var(--sun2));display:grid;place-items:center;font-style:normal}
+.links{display:flex;gap:26px;margin-inline-start:30px;font-weight:500;color:var(--muted);font-size:15px}.links a:hover{color:var(--ink)}
+.sp{flex:1}
+.mini{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;height:40px;padding:0 12px;cursor:pointer;font:600 13px 'Inter'}
+/* hero */
+.hero{padding:70px 0 40px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.05;font-weight:800;margin:16px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--sun),var(--sun2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:520px}
+.cta{display:flex;gap:12px;margin:28px 0 22px;flex-wrap:wrap}
+.trust{display:flex;gap:22px;font-size:14px;color:var(--muted);flex-wrap:wrap}.trust b{color:var(--ink)}
+.orb{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,0,.35),transparent 65%);top:-120px;inset-inline-end:-120px;z-index:-1;animation:pul 6s ease-in-out infinite}
+@keyframes pul{50%{transform:scale(1.12)}}
+.phone{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:22px;box-shadow:var(--shadow);transform:rotate(2deg);max-width:380px;margin-inline:auto}
+[dir=rtl] .phone{transform:rotate(-2deg)}
+.phone .row{display:flex;justify-content:space-between;align-items:center}
+.ring{width:190px;height:190px;margin:14px auto;display:block}
+.ring text{fill:var(--ink);font-family:Sora;font-weight:800}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--soft);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--muted)}.tile b{display:block;color:var(--ink);font:700 19px 'Sora'}
+.float{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 14px;font-size:13px;box-shadow:var(--shadow);animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px)}}
+/* sections */
+section{padding:80px 0}
+.head{text-align:center;max-width:640px;margin:0 auto 44px}.head h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;margin:12px 0}.head p{color:var(--muted)}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:34px}
+.seg button{border:0;background:none;padding:10px 24px;border-radius:999px;font:600 15px 'Inter';cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.center{text-align:center}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.ic{width:52px;height:52px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:25px;margin-bottom:14px}
+.card h3{font-size:19px;margin-bottom:6px}.card p{color:var(--muted);font-size:15px}
+.stats{background:linear-gradient(135deg,#14213d,#1d3566);color:#fff;border-radius:30px;padding:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stats b{display:block;font:800 40px 'Sora';color:var(--sun)}.stats span{opacity:.8;font-size:14px}
+/* calc */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+.calc>div{padding:38px}.calc .res{background:linear-gradient(160deg,var(--soft),var(--card))}
+label{display:block;font-weight:600;font-size:14px;margin:18px 0 8px}
+input[type=range]{width:100%;accent-color:var(--sun2)}
+input.f,select.f,textarea.f{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg2);color:var(--ink);font:500 15px 'Inter',sans-serif;outline:0}
+input.f:focus,select.f:focus{border-color:var(--sun)}
+.big{font:800 46px 'Sora';color:var(--sun2)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.kv small{color:var(--muted);display:block;font-size:13px}.kv b{font:700 21px 'Sora'}
+/* pricing */
+.price{position:relative}
+.price.pop{border:2px solid var(--sun);box-shadow:var(--shadow)}
+.price .tag{position:absolute;top:-13px;inset-inline-start:24px;background:var(--sun);color:#2a1700;font-weight:700;font-size:12px;padding:4px 12px;border-radius:99px}
+.price .amt{font:800 40px 'Sora';margin:10px 0}.price .amt small{font:500 14px 'Inter';color:var(--muted)}
+.price ul{list-style:none;margin:18px 0 24px}.price li{padding:7px 0;font-size:15px;display:flex;gap:10px}.price li:before{content:'✓';color:var(--green);font-weight:800}
+.price .btn{width:100%;justify-content:center}
+/* steps */
+.step{counter-increment:s}.step .n{font:800 15px 'Sora';color:var(--sun2);margin-bottom:10px}
+/* lead */
+.lead-box{background:linear-gradient(135deg,#14213d,#1d3566);border-radius:34px;padding:54px;color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.lead-box h2{font-size:38px;font-weight:800;margin-bottom:10px}.lead-box p{opacity:.8}
+.lead-box form{background:var(--card);color:var(--ink);padding:26px;border-radius:24px;display:grid;gap:12px}
+.lead-box input,.lead-box select{width:100%}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+/* portal */
+#portal{position:fixed;inset:0;background:var(--bg);z-index:100;display:none;flex-direction:column;overflow:auto}
+#portal.on{display:flex}
+.ptop{display:flex;align-items:center;gap:14px;padding:14px 24px;border-bottom:1px solid var(--line);background:var(--bg2);position:sticky;top:0;z-index:5}
+.ptabs{display:flex;gap:4px;margin-inline-start:24px;overflow:auto}
+.ptabs button{border:0;background:none;padding:10px 16px;border-radius:12px;font:600 14px 'Inter';cursor:pointer;color:var(--muted);white-space:nowrap}
+.ptabs button.on{background:var(--soft);color:var(--sun2)}
+.pbody{max-width:1100px;margin:0 auto;padding:28px 24px 90px;width:100%}
+.pv{display:none}.pv.on{display:block;animation:fd .35s}@keyframes fd{from{opacity:0;transform:translateY(8px)}}
+.greet{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px;flex-wrap:wrap;gap:12px}.greet h2{font-size:30px;font-weight:800}.greet p{color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-bottom:20px}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.pk div{background:var(--soft);border-radius:16px;padding:14px;font-size:13px;color:var(--muted)}.pk b{display:block;font:700 22px 'Sora';color:var(--ink)}
+.bars{display:flex;align-items:end;gap:8px;height:170px;margin-top:14px}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--sun),var(--sun2));min-height:6px;transition:.8s;position:relative}
+.bars i span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font:600 11px 'Inter';color:var(--muted);font-style:normal}
+.badge{padding:4px 11px;border-radius:99px;font-size:12px;font-weight:700}
+.b-ok{background:#d3f9e8;color:#087f5b}.b-w{background:#fff0c2;color:#a05d00}.b-r{background:#ffe0e0;color:#c92a2a}
+[data-theme=dark] .b-ok{background:#0d3b2c;color:#69dbb3}[data-theme=dark] .b-w{background:#3d2f06;color:#ffd069}
+table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:13px 8px;border-bottom:1px solid var(--line);text-align:start}th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}
+.tl{border-inline-start:2px solid var(--line);padding-inline-start:20px;margin-inline-start:6px}
+.tl div{position:relative;padding-bottom:18px}.tl div:before{content:'';position:absolute;inset-inline-start:-27px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--line)}
+.tl div.d:before{background:var(--green)}.tl div.c:before{background:var(--sun);box-shadow:0 0 0 5px rgba(255,180,0,.25)}
+.tl small{color:var(--muted);display:block}
+.bnav{display:none}
+.modal{position:fixed;inset:0;background:rgba(10,16,32,.6);backdrop-filter:blur(6px);z-index:200;display:none;place-items:center;padding:20px}
+.modal.on{display:grid}.modal .box{background:var(--card);border-radius:28px;padding:34px;max-width:410px;width:100%;box-shadow:var(--shadow)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:13px 22px;border-radius:99px;font-weight:600;z-index:300;transition:.4s}.toast.on{transform:translate(-50%,0)}
+@media(max-width:900px){.links{display:none}.hero .wrap,.calc,.lead-box,.pgrid{grid-template-columns:1fr}.g3,.g4,.stats{grid-template-columns:1fr 1fr}.lead-box{padding:30px}.float{display:none}}
+@media(max-width:560px){.g3,.g4,.stats{grid-template-columns:1fr}.pk{grid-template-columns:1fr 1fr}.nav .btn.p{display:none}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top"><i>☀️</i>BSolaire</a>
+  <nav class="links"><a href="#solutions" data-i="n1">Solutions</a><a href="#simu" data-i="n2">Simulateur</a><a href="#tarifs" data-i="n3">Tarifs</a><a href="#contact" data-i="n4">Contact</a></nav>
+  <div class="sp"></div>
+  <select class="mini" id="lang"><option value="fr">FR</option><option value="en">EN</option><option value="ar">عربي</option></select>
+  <button class="mini" id="th">🌙</button>
+  <button class="btn o" onclick="openLogin()" data-i="portal">Espace client</button>
+  <a class="btn p" href="#contact" data-i="trial">Essai gratuit</a>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="orb"></div><div class="wrap">
+  <div>
+    <span class="chip" data-i="chip">☀️ Pour les foyers et les entreprises</span>
+    <h1 data-i="h1">Produisez, suivez et <em>économisez</em> avec le soleil.</h1>
+    <p class="lead" data-i="lead">Une plateforme unique pour suivre votre installation solaire en temps réel, réduire vos factures et obtenir un devis en 2 minutes.</p>
+    <div class="cta"><a class="btn p" href="#simu" data-i="c1">Calculer mes économies →</a><button class="btn o" onclick="openLogin()" data-i="c2">▶ Voir la démo</button></div>
+    <div class="trust"><span>✓ <b data-i="t1">Sans engagement</b></span><span>✓ <b data-i="t2">Suivi en temps réel</b></span><span>✓ <b data-i="t3">Support local</b></span></div>
+  </div>
+  <div style="position:relative">
+    <div class="float" style="top:20px;inset-inline-start:-10px">💰 <b>−62 %</b> <span style="color:var(--muted)" data-i="f1">sur la facture</span></div>
+    <div class="float" style="bottom:40px;inset-inline-end:-6px;animation-delay:-2s">🌿 <b>1,2 t</b> <span style="color:var(--muted)">CO₂</span></div>
+    <div class="phone">
+      <div class="row"><b class="sora" data-i="ph1">Ma maison</b><span class="badge b-ok">● Live</span></div>
+      <svg class="ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="84" fill="none" stroke="var(--line)" stroke-width="16"/><circle id="hr" cx="100" cy="100" r="84" fill="none" stroke="url(#g1)" stroke-width="16" stroke-linecap="round" stroke-dasharray="528" stroke-dashoffset="528" transform="rotate(-90 100 100)" style="transition:2s"/><defs><linearGradient id="g1"><stop offset="0" stop-color="#ffb400"/><stop offset="1" stop-color="#ff7a18"/></linearGradient></defs><text x="100" y="104" text-anchor="middle" font-size="38">4,8</text><text x="100" y="128" text-anchor="middle" font-size="14" style="fill:var(--muted);font-weight:500">kW</text></svg>
+      <div class="tiles"><div class="tile" data-i="ph2">Aujourd'hui<b>28,4 kWh</b></div><div class="tile" data-i="ph3">Économisé<b>19 TND</b></div></div>
+    </div>
+  </div>
+</div></div>
+
+<section style="padding:30px 0 10px"><div class="wrap"><div class="stats">
+  <div><b data-c="500">0</b><span data-i="s1">installations suivies</span></div>
+  <div><b data-c="35">0</b><span data-i="s2">% d'économies moyennes</span></div>
+  <div><b data-c="25">0</b><span data-i="s3">ans de garantie panneaux</span></div>
+  <div><b data-c="24">0</b><span data-i="s4">h/24 supervision</span></div>
+</div></div></section>
+
+<section id="solutions"><div class="wrap">
+  <div class="head center"><span class="chip" data-i="sol">Solutions</span><h2 data-i="sol_h">Une offre pour chaque besoin</h2><p data-i="sol_p">Choisissez votre profil, nous adaptons l'installation, le suivi et le financement.</p></div>
+  <div class="center"><div class="seg" id="seg"><button class="on" data-s="home" data-i="home">🏠 Domicile</button><button data-s="biz" data-i="biz">🏢 Entreprise</button></div></div>
+  <div class="g3" id="benefits"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="head center"><span class="chip" data-i="how">Comment ça marche</span><h2 data-i="how_h">De la demande à la production en 4 étapes</h2></div>
+  <div class="g4">
+    <div class="card step"><div class="n">01</div><h3 data-i="st1">Simulation</h3><p data-i="st1p">Estimez en 2 minutes votre puissance et vos économies.</p></div>
+    <div class="card step"><div class="n">02</div><h3 data-i="st2">Visite technique</h3><p data-i="st2p">Un technicien valide votre toiture et votre installation.</p></div>
+    <div class="card step"><div class="n">03</div><h3 data-i="st3">Installation</h3><p data-i="st3p">Pose rapide par une équipe certifiée.</p></div>
+    <div class="card step"><div class="n">04</div><h3 data-i="st4">Suivi en direct</h3><p data-i="st4p">Pilotez tout depuis votre espace client.</p></div>
+  </div>
+</div></section>
+
+<section id="simu" style="background:var(--soft)"><div class="wrap">
+  <div class="head center"><span class="chip" data-i="sim">Simulateur gratuit</span><h2 data-i="sim_h">Combien pouvez-vous économiser ?</h2></div>
+  <div class="calc">
+    <div>
+      <label data-i="cl1">Je suis…</label><select class="f" id="c-t"><option value="home" data-i="home2">Un particulier</option><option value="biz" data-i="biz2">Une entreprise</option></select>
+      <label><span data-i="cl2">Facture d'électricité mensuelle</span> : <b id="c-bl">250</b> TND</label><input type="range" id="c-b" min="50" max="6000" step="10" value="250">
+      <label><span data-i="cl3">Surface de toit</span> : <b id="c-rl">60</b> m²</label><input type="range" id="c-r" min="15" max="2500" step="5" value="60">
+      <label data-i="cl4">Batterie de stockage</label><select class="f" id="c-s"><option value="0" data-i="no">Non</option><option value="1" selected data-i="yes">Oui</option></select>
+    </div>
+    <div class="res">
+      <div style="color:var(--muted)" data-i="r0">Installation recommandée</div><div class="big sora" id="r-kw">0 kWc</div>
+      <div class="kv"><div><small data-i="r1">Économies / an</small><b id="r-sav">0</b></div><div><small data-i="r2">Investissement</small><b id="r-inv">0</b></div><div><small data-i="r3">Rentabilisé en</small><b id="r-roi" style="color:var(--green)">0</b></div><div><small data-i="r4">CO₂ évité / an</small><b id="r-co2">0</b></div></div>
+      <a class="btn p" href="#contact" onclick="fillLead()" data-i="r5">Recevoir mon devis détaillé →</a>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px" data-i="disc">Estimation indicative basée sur des hypothèses moyennes ; le devis final dépend de la visite technique.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="tarifs"><div class="wrap">
+  <div class="head center"><span class="chip" data-i="tar">Abonnements de suivi</span><h2 data-i="tar_h">Choisissez votre formule</h2><p data-i="tar_p">Tarifs indicatifs à confirmer. Le suivi est offert pendant 3 mois avec toute installation.</p></div>
+  <div class="g3" id="plans"></div>
+</div></section>
+
+<section id="contact" style="padding-top:20px"><div class="wrap"><div class="lead-box">
+  <div><h2 data-i="ct_h">Parlons de votre projet</h2><p data-i="ct_p">Laissez-nous vos coordonnées : un conseiller vous rappelle sous 24 h avec une proposition adaptée. Rendez-vous possible par Zoom ou Teams.</p></div>
+  <form id="lead" onsubmit="sendLead(event)">
+    <input class="f" id="l-n" required placeholder="Nom complet">
+    <input class="f" id="l-p" required placeholder="Téléphone / WhatsApp" inputmode="tel">
+    <input class="f" id="l-e" type="email" placeholder="E-mail">
+    <select class="f" id="l-t"><option value="home">Particulier</option><option value="biz">Entreprise</option></select>
+    <button class="btn p" style="justify-content:center" data-i="send">Demander mon devis gratuit</button>
+  </form>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 BSolaire — Saifeddine Bejaoui, CEO</span><span data-i="foot">Énergie solaire · Suivi · Maintenance</span></div></footer>
+
+<!-- LOGIN -->
+<div class="modal" id="login"><div class="box">
+  <h2 class="sora" style="margin-bottom:6px" data-i="lg1">Espace client</h2><p style="color:var(--muted);margin-bottom:12px" data-i="lg2">Connectez-vous pour suivre votre installation.</p>
+  <label>E-mail</label><input class="f" value="client@exemple.tn"><label data-i="pw">Mot de passe</label><input class="f" type="password" value="demo1234">
+  <button class="btn p" style="width:100%;justify-content:center;margin-top:20px" onclick="enter()" data-i="lg3">Se connecter (démo)</button>
+  <button class="btn o" style="width:100%;justify-content:center;margin-top:10px" onclick="closeLogin()" data-i="cancel">Annuler</button>
+</div></div>
+
+<!-- PORTAL -->
+<div id="portal">
+  <div class="ptop">
+    <div class="brand"><i>☀️</i>BSolaire</div>
+    <div class="ptabs" id="ptabs">
+      <button class="on" data-p="home" data-i="p1">Accueil</button><button data-p="prod" data-i="p2">Production</button><button data-p="bill" data-i="p3">Factures</button><button data-p="sup" data-i="p4">Support</button><button data-p="ref" data-i="p5">Parrainage</button>
+    </div>
+    <div class="sp"></div>
+    <select class="mini" id="site"><option>🏠 Villa La Marsa</option><option>🏢 Atelier Sfax</option></select>
+    <button class="mini" onclick="document.getElementById('portal').classList.remove('on')" data-i="out">Quitter</button>
+  </div>
+  <div class="pbody">
+    <div class="pv on" id="p-home">
+      <div class="greet"><div><h2><span data-i="hi">Bonjour</span>, Ahmed 👋</h2><p data-i="hi2">Votre installation fonctionne parfaitement aujourd'hui.</p></div><span class="badge b-ok" data-i="allok">● Tout est normal</span></div>
+      <div class="pgrid">
+        <div class="card"><h3 class="sora" data-i="now">Production en direct</h3>
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap"><svg width="170" height="170" viewBox="0 0 200 200"><circle cx="100" cy="100" r="84" fill="none" stroke="var(--line)" stroke-width="16"/><circle id="pr" cx="100" cy="100" r="84" fill="none" stroke="url(#g1)" stroke-width="16" stroke-linecap="round" stroke-dasharray="528" stroke-dashoffset="528" transform="rotate(-90 100 100)" style="transition:1.6s"/><text x="100" y="108" text-anchor="middle" font-size="40" style="fill:var(--ink);font-family:Sora;font-weight:800" id="pkw">0</text><text x="100" y="132" text-anchor="middle" font-size="14" style="fill:var(--muted)">kW</text></svg>
+          <div class="pk" style="flex:1;min-width:230px;margin:0"><div><span data-i="td">Aujourd'hui</span><b>28,4 kWh</b></div><div><span data-i="sv">Économisé</span><b>19 TND</b></div><div><span data-i="bt">Batterie</span><b>78 %</b></div></div></div>
+        </div>
+        <div class="card"><h3 class="sora" data-i="mm">Ce mois-ci</h3><div class="big" style="font-size:36px">312 TND</div><p style="color:var(--muted);font-size:14px" data-i="mm2">économisés grâce à votre installation (+15 % vs mois dernier)</p>
+          <div style="margin-top:16px;background:var(--soft);border-radius:14px;padding:14px;font-size:14px">🌿 <b>1,2 t</b> <span data-i="co">CO₂ évité ≈ 54 arbres plantés</span></div></div>
+      </div>
+      <div class="card"><h3 class="sora" data-i="wk">7 derniers jours (kWh)</h3><div class="bars" id="wk"></div><div style="height:22px"></div></div>
+    </div>
+
+    <div class="pv" id="p-prod"><div class="greet"><h2 data-i="p2">Production</h2></div>
+      <div class="card"><div class="bars" id="mo" style="height:220px"></div><div style="height:24px"></div></div>
+      <div class="pk" style="grid-template-columns:repeat(4,1fr)"><div>Pic<b>5,9 kW</b></div><div>Rendement<b>91 %</b></div><div>Autoconso.<b>74 %</b></div><div>Injection<b>26 %</b></div></div></div>
+
+    <div class="pv" id="p-bill"><div class="greet"><h2 data-i="p3">Factures</h2></div>
+      <div class="card"><table><thead><tr><th>N°</th><th>Date</th><th>Description</th><th>Montant</th><th></th></tr></thead><tbody>
+      <tr><td>F-2026-014</td><td>01/10/2026</td><td>Abonnement suivi — Confort</td><td>29 TND</td><td><span class="badge b-ok">Payée</span></td></tr>
+      <tr><td>F-2026-009</td><td>01/09/2026</td><td>Abonnement suivi — Confort</td><td>29 TND</td><td><span class="badge b-ok">Payée</span></td></tr>
+      <tr><td>F-2026-003</td><td>12/07/2026</td><td>Maintenance annuelle</td><td>120 TND</td><td><span class="badge b-w">En attente</span></td></tr></tbody></table></div></div>
+
+    <div class="pv" id="p-sup"><div class="greet"><h2 data-i="p4">Support</h2></div>
+      <div class="pgrid"><div class="card"><h3 class="sora" data-i="sp1">Demander une intervention</h3>
+        <label data-i="sp2">Type de demande</label><select class="f"><option>Nettoyage des panneaux</option><option>Panne / alerte</option><option>Extension de l'installation</option><option>Autre</option></select>
+        <label>Message</label><textarea class="f" rows="3" placeholder="Décrivez votre besoin…"></textarea>
+        <button class="btn p" style="margin-top:16px" onclick="toast(T('sent2'))" data-i="sp3">Envoyer la demande</button>
+        <button class="btn o" style="margin-top:16px;margin-inline-start:8px" onclick="toast('Rendez-vous Zoom / Teams (démo)')">📹 Appel vidéo</button></div>
+        <div class="card"><h3 class="sora" data-i="sp4">Suivi de votre demande</h3><div class="tl" style="margin-top:16px"><div class="d"><b>Demande reçue</b><small>12 oct · 09:14</small></div><div class="d"><b>Technicien assigné</b><small>12 oct · 11:02</small></div><div class="c"><b>Intervention planifiée</b><small>16 oct · 10:00</small></div><div><b>Terminée</b></div></div></div></div></div>
+
+    <div class="pv" id="p-ref"><div class="greet"><h2 data-i="p5">Parrainage</h2></div>
+      <div class="card" style="text-align:center;padding:44px"><div style="font-size:52px">🎁</div><h3 class="sora" style="font-size:26px;margin:10px 0" data-i="rf1">Parrainez un proche, gagnez une récompense</h3><p data-i="rf2" style="max-width:480px;margin:0 auto 20px">Partagez votre lien : à chaque installation réalisée, vous recevez un avantage (montant à définir).</p>
+        <input class="f" readonly value="bsolaire.tn/r/AHMED2026" style="max-width:320px;text-align:center"><br><br><button class="btn p" onclick="navigator.clipboard&&navigator.clipboard.writeText('bsolaire.tn/r/AHMED2026');toast(T('copied'))" data-i="rf3">Copier mon lien</button></div></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* i18n */
+const L={
+fr:{n1:'Solutions',n2:'Simulateur',n3:'Tarifs',n4:'Contact',portal:'Espace client',trial:'Essai gratuit',chip:'☀️ Pour les foyers et les entreprises',h1:'Produisez, suivez et <em>économisez</em> avec le soleil.',lead:'Une plateforme unique pour suivre votre installation solaire en temps réel, réduire vos factures et obtenir un devis en 2 minutes.',c1:'Calculer mes économies →',c2:'▶ Voir la démo',t1:'Sans engagement',t2:'Suivi en temps réel',t3:'Support local',f1:'sur la facture',ph1:'Ma maison',ph2:'Aujourd\'hui<b>28,4 kWh</b>',ph3:'Économisé<b>19 TND</b>',s1:'installations suivies',s2:'% d\'économies moyennes',s3:'ans de garantie panneaux',s4:'h/24 supervision',sol:'Solutions',sol_h:'Une offre pour chaque besoin',sol_p:'Choisissez votre profil, nous adaptons l\'installation, le suivi et le financement.',home:'🏠 Domicile',biz:'🏢 Entreprise',how:'Comment ça marche',how_h:'De la demande à la production en 4 étapes',st1:'Simulation',st1p:'Estimez en 2 minutes votre puissance et vos économies.',st2:'Visite technique',st2p:'Un technicien valide votre toiture et votre installation.',st3:'Installation',st3p:'Pose rapide par une équipe certifiée.',st4:'Suivi en direct',st4p:'Pilotez tout depuis votre espace client.',sim:'Simulateur gratuit',sim_h:'Combien pouvez-vous économiser ?',cl1:'Je suis…',home2:'Un particulier',biz2:'Une entreprise',cl2:'Facture d\'électricité mensuelle',cl3:'Surface de toit',cl4:'Batterie de stockage',no:'Non',yes:'Oui',r0:'Installation recommandée',r1:'Économies / an',r2:'Investissement',r3:'Rentabilisé en',r4:'CO₂ évité / an',r5:'Recevoir mon devis détaillé →',disc:'Estimation indicative basée sur des hypothèses moyennes ; le devis final dépend de la visite technique.',tar:'Abonnements de suivi',tar_h:'Choisissez votre formule',tar_p:'Tarifs indicatifs à confirmer. Le suivi est offert pendant 3 mois avec toute installation.',ct_h:'Parlons de votre projet',ct_p:'Laissez-nous vos coordonnées : un conseiller vous rappelle sous 24 h avec une proposition adaptée. Rendez-vous possible par Zoom ou Teams.',send:'Demander mon devis gratuit',foot:'Énergie solaire · Suivi · Maintenance',lg1:'Espace client',lg2:'Connectez-vous pour suivre votre installation.',pw:'Mot de passe',lg3:'Se connecter (démo)',cancel:'Annuler',p1:'Accueil',p2:'Production',p3:'Factures',p4:'Support',p5:'Parrainage',out:'Quitter',hi:'Bonjour',hi2:'Votre installation fonctionne parfaitement aujourd\'hui.',allok:'● Tout est normal',now:'Production en direct',td:'Aujourd\'hui',sv:'Économisé',bt:'Batterie',mm:'Ce mois-ci',mm2:'économisés grâce à votre installation (+15 % vs mois dernier)',co:'CO₂ évité ≈ 54 arbres plantés',wk:'7 derniers jours (kWh)',sp1:'Demander une intervention',sp2:'Type de demande',sp3:'Envoyer la demande',sp4:'Suivi de votre demande',rf1:'Parrainez un proche, gagnez une récompense',rf2:'Partagez votre lien : à chaque installation réalisée, vous recevez un avantage (montant à définir).',rf3:'Copier mon lien',sent:'Merci ! Un conseiller vous rappelle sous 24 h.',sent2:'Demande envoyée ✓',copied:'Lien copié ✓',yr:'ans',cur:'TND',mo:'/mois',cta:'Choisir',pop:'Le plus choisi',
+ homeB:[['💡','Factures réduites','Jusqu\'à 60 % d\'économies sur votre consommation.'],['🔋','Autonomie','Batterie pour profiter du solaire le soir et en cas de coupure.'],['📱','Suivi dans votre poche','Production, économies et alertes en direct.']],
+ bizB:[['📉','Coûts d\'exploitation','Stabilisez vos coûts énergétiques sur 25 ans.'],['📊','Rapports & ESG','Rapports d\'économies et de CO₂ pour vos partenaires.'],['🛠️','Maintenance prédictive','Alertes avant la panne, intervention rapide.']],
+ plH:[['Essentiel',9,['Suivi de production','Alertes par e-mail','Rapport mensuel']],['Confort',29,['Tout Essentiel','Suivi batterie & économies','Support prioritaire','Nettoyage annuel']],['Premium',59,['Tout Confort','Maintenance préventive','Visite technique 2×/an','Ligne dédiée']]],
+ plB:[['Pro',149,['Jusqu\'à 3 sites','Tableaux de bord équipe','Rapport mensuel PDF']],['Business',399,['Jusqu\'à 15 sites','Rapports ESG / CO₂','Maintenance prédictive','Accès multi-utilisateurs']],['Industrie','Sur devis',['Sites illimités','API & intégrations','Account manager','SLA garanti']]]},
+en:{n1:'Solutions',n2:'Simulator',n3:'Pricing',n4:'Contact',portal:'Client portal',trial:'Free trial',chip:'☀️ For homes and businesses',h1:'Generate, monitor and <em>save</em> with the sun.',lead:'One platform to monitor your solar system in real time, cut your bills and get a quote in 2 minutes.',c1:'Calculate my savings →',c2:'▶ View demo',t1:'No commitment',t2:'Real-time monitoring',t3:'Local support',f1:'on the bill',ph1:'My home',ph2:'Today<b>28.4 kWh</b>',ph3:'Saved<b>19 TND</b>',s1:'monitored systems',s2:'% average savings',s3:'years panel warranty',s4:'h/24 monitoring',sol:'Solutions',sol_h:'An offer for every need',sol_p:'Pick your profile; we adapt installation, monitoring and financing.',home:'🏠 Home',biz:'🏢 Business',how:'How it works',how_h:'From request to production in 4 steps',st1:'Simulation',st1p:'Estimate your power and savings in 2 minutes.',st2:'Site visit',st2p:'A technician validates your roof and setup.',st3:'Installation',st3p:'Fast installation by a certified team.',st4:'Live monitoring',st4p:'Control everything from your client portal.',sim:'Free simulator',sim_h:'How much can you save?',cl1:'I am…',home2:'A homeowner',biz2:'A business',cl2:'Monthly electricity bill',cl3:'Roof area',cl4:'Battery storage',no:'No',yes:'Yes',r0:'Recommended system',r1:'Savings / year',r2:'Investment',r3:'Payback in',r4:'CO₂ avoided / year',r5:'Get my detailed quote →',disc:'Indicative estimate based on average assumptions; the final quote depends on the site visit.',tar:'Monitoring plans',tar_h:'Choose your plan',tar_p:'Indicative prices, to be confirmed. Monitoring is free for 3 months with any installation.',ct_h:'Let\'s talk about your project',ct_p:'Leave your details: an advisor will call you within 24h with a tailored proposal. Zoom or Teams meetings available.',send:'Request my free quote',foot:'Solar energy · Monitoring · Maintenance',lg1:'Client portal',lg2:'Sign in to monitor your system.',pw:'Password',lg3:'Sign in (demo)',cancel:'Cancel',p1:'Home',p2:'Production',p3:'Invoices',p4:'Support',p5:'Referral',out:'Exit',hi:'Hello',hi2:'Your system is running perfectly today.',allok:'● All normal',now:'Live production',td:'Today',sv:'Saved',bt:'Battery',mm:'This month',mm2:'saved thanks to your system (+15% vs last month)',co:'CO₂ avoided ≈ 54 trees planted',wk:'Last 7 days (kWh)',sp1:'Request a service',sp2:'Request type',sp3:'Send request',sp4:'Request tracking',rf1:'Refer a friend, earn a reward',rf2:'Share your link: for each completed installation you receive a benefit (amount to be defined).',rf3:'Copy my link',sent:'Thanks! An advisor will call you within 24h.',sent2:'Request sent ✓',copied:'Link copied ✓',yr:'yrs',cur:'TND',mo:'/mo',cta:'Choose',pop:'Most popular',
+ homeB:[['💡','Lower bills','Up to 60% savings on your consumption.'],['🔋','Independence','Battery to use solar at night and during outages.'],['📱','Monitoring in your pocket','Live production, savings and alerts.']],
+ bizB:[['📉','Operating costs','Stabilize energy costs for 25 years.'],['📊','Reports & ESG','Savings and CO₂ reports for partners.'],['🛠️','Predictive maintenance','Alerts before failure, fast service.']],
+ plH:[['Essential',9,['Production monitoring','Email alerts','Monthly report']],['Comfort',29,['All Essential','Battery & savings tracking','Priority support','Yearly cleaning']],['Premium',59,['All Comfort','Preventive maintenance','2 site visits / year','Dedicated line']]],
+ plB:[['Pro',149,['Up to 3 sites','Team dashboards','Monthly PDF report']],['Business',399,['Up to 15 sites','ESG / CO₂ reports','Predictive maintenance','Multi-user access']],['Industry','Custom',['Unlimited sites','API & integrations','Account manager','Guaranteed SLA']]]},
+ar:{n1:'الحلول',n2:'المحاكي',n3:'الأسعار',n4:'اتصل بنا',portal:'فضاء الحريف',trial:'تجربة مجانية',chip:'☀️ للمنازل والمؤسسات',h1:'أنتج وتابع و<em>وفّر</em> مع الشمس.',lead:'منصة واحدة لمتابعة منظومتك الشمسية لحظة بلحظة، وتخفيض فواتيرك والحصول على عرض سعر في دقيقتين.',c1:'احسب توفيري ←',c2:'▶ شاهد العرض',t1:'دون التزام',t2:'متابعة فورية',t3:'دعم محلي',f1:'من الفاتورة',ph1:'منزلي',ph2:'اليوم<b>28.4 ك.و.س</b>',ph3:'وفّرت<b>19 د.ت</b>',s1:'منظومة تحت المتابعة',s2:'% معدل التوفير',s3:'سنة ضمان الألواح',s4:'س/24 مراقبة',sol:'الحلول',sol_h:'عرض لكل احتياج',sol_p:'اختر ملفك ونحن نكيّف التركيب والمتابعة والتمويل.',home:'🏠 منزل',biz:'🏢 مؤسسة',how:'كيف تعمل',how_h:'من الطلب إلى الإنتاج في 4 خطوات',st1:'المحاكاة',st1p:'قدّر قدرتك وتوفيرك في دقيقتين.',st2:'زيارة تقنية',st2p:'فني يتحقق من السطح والتجهيزات.',st3:'التركيب',st3p:'تركيب سريع بفريق معتمد.',st4:'متابعة مباشرة',st4p:'تحكم في كل شيء من فضائك.',sim:'محاكي مجاني',sim_h:'كم يمكنك أن توفّر؟',cl1:'أنا…',home2:'فرد',biz2:'مؤسسة',cl2:'فاتورة الكهرباء الشهرية',cl3:'مساحة السطح',cl4:'بطارية تخزين',no:'لا',yes:'نعم',r0:'المنظومة المقترحة',r1:'التوفير / سنة',r2:'الاستثمار',r3:'مدة الاسترجاع',r4:'CO₂ المتفادى / سنة',r5:'احصل على عرض السعر ←',disc:'تقدير إرشادي مبني على فرضيات متوسطة؛ العرض النهائي بعد الزيارة التقنية.',tar:'اشتراكات المتابعة',tar_h:'اختر صيغتك',tar_p:'أسعار إرشادية قابلة للتأكيد. المتابعة مجانية 3 أشهر مع كل تركيب.',ct_h:'لنتحدث عن مشروعك',ct_p:'اترك بياناتك وسيتصل بك مستشار خلال 24 ساعة بعرض مناسب. لقاء عبر Zoom أو Teams ممكن.',send:'اطلب عرض السعر المجاني',foot:'طاقة شمسية · متابعة · صيانة',lg1:'فضاء الحريف',lg2:'سجّل الدخول لمتابعة منظومتك.',pw:'كلمة السر',lg3:'دخول (تجريبي)',cancel:'إلغاء',p1:'الرئيسية',p2:'الإنتاج',p3:'الفواتير',p4:'الدعم',p5:'الإحالة',out:'خروج',hi:'مرحبا',hi2:'منظومتك تعمل بشكل ممتاز اليوم.',allok:'● كل شيء عادي',now:'الإنتاج المباشر',td:'اليوم',sv:'التوفير',bt:'البطارية',mm:'هذا الشهر',mm2:'وفّرتها بفضل منظومتك (+15% عن الشهر الماضي)',co:'CO₂ المتفادى ≈ غرس 54 شجرة',wk:'آخر 7 أيام (ك.و.س)',sp1:'طلب تدخل',sp2:'نوع الطلب',sp3:'إرسال الطلب',sp4:'متابعة طلبك',rf1:'أحل صديقا واربح مكافأة',rf2:'شارك رابطك: مع كل تركيب منجز تحصل على امتياز (القيمة تُحدد لاحقا).',rf3:'نسخ الرابط',sent:'شكرا! سيتصل بك مستشار خلال 24 ساعة.',sent2:'تم إرسال الطلب ✓',copied:'تم نسخ الرابط ✓',yr:'سنة',cur:'د.ت',mo:'/شهر',cta:'اختر',pop:'الأكثر طلبا',
+ homeB:[['💡','فواتير أقل','توفير يصل إلى 60% من استهلاكك.'],['🔋','استقلالية','بطارية لاستعمال الشمس ليلا وعند الانقطاع.'],['📱','متابعة في جيبك','إنتاج وتوفير وتنبيهات مباشرة.']],
+ bizB:[['📉','كلفة التشغيل','استقرار كلفة الطاقة لمدة 25 سنة.'],['📊','تقارير ESG','تقارير التوفير و CO₂ لشركائك.'],['🛠️','صيانة استباقية','تنبيه قبل العطب وتدخل سريع.']],
+ plH:[['أساسي',9,['متابعة الإنتاج','تنبيهات بالبريد','تقرير شهري']],['مريح',29,['كل الأساسي','متابعة البطارية والتوفير','دعم ذو أولوية','تنظيف سنوي']],['مميز',59,['كل المريح','صيانة وقائية','زيارتان فنيتان سنويا','خط مخصص']]],
+ plB:[['برو',149,['حتى 3 مواقع','لوحات للفريق','تقرير PDF شهري']],['بيزنس',399,['حتى 15 موقعا','تقارير ESG','صيانة استباقية','عدة مستخدمين']],['صناعة','حسب الطلب',['مواقع غير محدودة','واجهة API','مدير حساب','ضمان SLA']]]}
+};
+let lang='fr',seg='home';
+const T=k=>L[lang][k]||k;
+function applyLang(){
+  const d=L[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  $$('[data-i]').forEach(e=>{const v=d[e.dataset.i];if(v===undefined)return;if(e.tagName==='OPTION')e.textContent=v;else e.innerHTML=v});
+  $$('[data-c]').forEach(e=>e.dataset.done='');
+  renderSeg();calc();
+}
+function renderSeg(){
+  const d=L[lang],b=seg==='home'?d.homeB:d.bizB,pl=seg==='home'?d.plH:d.plB;
+  $('#benefits').innerHTML=b.map(x=>`<div class="card"><div class="ic">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('');
+  $('#plans').innerHTML=pl.map((p,i)=>`<div class="card price ${i==1?'pop':''}">${i==1?`<span class="tag">${d.pop}</span>`:''}<h3>${p[0]}</h3><div class="amt">${typeof p[1]==='number'?p[1]+' <small>'+d.cur+d.mo+'</small>':p[1]}</div><ul>${p[2].map(f=>`<li>${f}</li>`).join('')}</ul><a class="btn ${i==1?'p':'o'}" href="#contact">${d.cta}</a></div>`).join('');
+  $$('#seg button').forEach(x=>x.classList.toggle('on',x.dataset.s===seg));
+}
+$$('#seg button').forEach(b=>b.onclick=()=>{seg=b.dataset.s;renderSeg()});
+$('#lang').onchange=e=>{lang=e.target.value;applyLang()};
+$('#th').onclick=()=>{const h=document.documentElement,d=h.dataset.theme==='dark';h.dataset.theme=d?'light':'dark';$('#th').textContent=d?'🌙':'☀️'};
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2600)}
+/* counters */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const e=en.target,to=+e.dataset.c,s=performance.now();(function f(t){const p=Math.min((t-s)/1400,1);e.textContent=Math.round(to*(1-Math.pow(1-p,3)))+(to>=100?'+':'');if(p<1)requestAnimationFrame(f)})(s);io.unobserve(e)}));
+$$('[data-c]').forEach(e=>io.observe(e));
+/* calculator */
+function calc(){
+  const bill=+$('#c-b').value,roof=+$('#c-r').value,biz=$('#c-t').value==='biz',bat=+$('#c-s').value;
+  $('#c-bl').textContent=bill;$('#c-rl').textContent=roof;
+  const tariff=.25,yld=1700; /* hypothèses : TND/kWh et kWh/kWc/an */
+  let kw=Math.max(1,Math.min(bill*12/tariff/yld,roof/6.5));
+  const inv=(biz?3200:3800)*kw+(bat?1100*kw:0),prod=kw*yld,sav=prod*tariff*.85;
+  const d=L[lang],n=x=>Math.round(x).toLocaleString(lang==='ar'?'ar-TN':lang==='en'?'en-US':'fr-FR');
+  $('#r-kw').textContent=kw.toFixed(1)+' kWc';$('#r-sav').textContent=n(sav)+' '+d.cur;$('#r-inv').textContent=n(inv)+' '+d.cur;
+  $('#r-roi').textContent=(inv/sav).toFixed(1)+' '+d.yr;$('#r-co2').textContent=(prod*.00045).toFixed(1)+' t';
+}
+['c-b','c-r','c-t','c-s'].forEach(i=>$('#'+i).addEventListener('input',calc));
+function fillLead(){$('#l-t').value=$('#c-t').value}
+/* leads */
+function sendLead(e){e.preventDefault();
+  const lead={name:$('#l-n').value,phone:$('#l-p').value,email:$('#l-e').value,type:$('#l-t').value,bill:$('#c-b').value,roof:$('#c-r').value,at:new Date().toISOString()};
+  try{const a=JSON.parse(localStorage.getItem('bs_leads')||'[]');a.push(lead);localStorage.setItem('bs_leads',JSON.stringify(a))}catch(x){}
+  console.log('Lead (à brancher sur votre CRM / e-mail / WhatsApp) :',lead);
+  e.target.reset();toast(T('sent'));
+}
+/* portal */
+function openLogin(){$('#login').classList.add('on')}function closeLogin(){$('#login').classList.remove('on')}
+function enter(){closeLogin();$('#portal').classList.add('on');setTimeout(()=>{$('#pr').style.strokeDashoffset=528*(1-.8);count($('#pkw'),4.8,1)},100)}
+function count(el,to,dec){const s=performance.now();(function f(t){const p=Math.min((t-s)/1400,1);el.textContent=(to*(1-Math.pow(1-p,3))).toFixed(dec).replace('.',lang==='en'?'.':',');if(p<1)requestAnimationFrame(f)})(s)}
+$$('#ptabs button').forEach(b=>b.onclick=()=>{$$('#ptabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('.pv').forEach(v=>v.classList.remove('on'));$('#p-'+b.dataset.p).classList.add('on')});
+function bars(id,vals,labels){const m=Math.max(...vals);$(id).innerHTML=vals.map((v,i)=>`<i style="height:${v/m*100}%" title="${v}"><span>${labels[i]}</span></i>`).join('')}
+bars('#wk',[24,31,18,35,29,33,28],['L','M','M','J','V','S','D']);
+bars('#mo',[620,810,1050,1290,1480,1620,1700,1650,1380,1020,730,560],['J','F','M','A','M','J','J','A','S','O','N','D']);
+setTimeout(()=>$('#hr').style.strokeDashoffset=528*(1-.8),400);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLogin()}});
+applyLang();
+</script>
+</body>
+</html>
